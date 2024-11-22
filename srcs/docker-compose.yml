@@ -1,0 +1,25 @@
+name: unspash
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: web
+    image: web
+    container_name: web
+    ports:
+      - 8443:80
+    volumes:
+      - web:/usr/src/web
+
+
+volumes:
+  web:
+    name: web
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../volumes/web/

@@ -1,0 +1,16 @@
+# Step 1: Use a base image
+FROM nginx:alpine
+
+# Step 2: Set the working directory
+WORKDIR /usr/share/nginx/html
+
+# Step 3: Copy application files
+COPY ./tools /usr/share/nginx/html
+# COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+
+# Step 4: Expose port 80 to access the application
+EXPOSE 80
+
+# Step 5: Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
