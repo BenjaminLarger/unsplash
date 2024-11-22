@@ -1,6 +1,20 @@
 # Step 1: Use a base image
 FROM nginx:alpine
 
+# Dowload apt
+RUN apk update && apk add bash \
+    && apk add openssl \
+    && apk add openssh \
+    && apk add openrc \
+    && apk add vim \
+    && apk add nodejs \
+    && apk add npm
+
+# Install dotenv
+# COPY package*.json ./
+# RUN npm cache clean --force
+# RUN npm install dotenv
+
 # Step 2: Set the working directory
 WORKDIR /usr/share/nginx/html
 
