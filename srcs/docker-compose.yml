@@ -1,27 +1,44 @@
 name: unspash
 
 services:
-  web:
+  nginx:
     build:
-      context: ./web
+      context: ./nginx
       dockerfile: Dockerfile
-      args:
-        SERVICE_NAME: web
-    image: web
-    container_name: web
+    image: nginx
+    container_name: nginx
     ports:
       - 8443:80
     env_file:
       - .env
     volumes:
-      - web:/usr/src/web
+      - nginx:/usr/src/nginx
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    volumes:
+      - backend:/usr/src/backend
 
 
 volumes:
-  web:
-    name: web
+  nginx:
+    name: nginx
     driver: local
     driver_opts:
       type: none
       o: bind
-      device: ../volumes/web/
+      device: ../volumes/nginx/
+  backend:
+    name: backend
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ../volumes/backend/

@@ -3,6 +3,8 @@
 // const secretKey = process.env.SECRET_KEY;
 
 const accessKey = "1limJC1oMa3Vy-zxff6k5sjYiGbFvqtdvoRoOjTnmAc";
+const redirectUri = "http://localhost:8443/callback"; // Your redirect URI
+const authUrl = `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public+write_likes`;
 
 const gallery = document.getElementById('gallery');
 
@@ -27,3 +29,8 @@ async function fetchPhotots() {
 }
 
 fetchPhotots();
+
+// Logic to redirect users to Unsplah for authentication
+document.getElementById('login').addEventListener('click', () => {
+  window.location.href = authUrl;
+});

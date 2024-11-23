@@ -14,7 +14,7 @@ logs:
 	cd srcs && docker-compose logs -f
 
 exec:
-	docker exec -it web /bin/sh
+	docker exec -it nginx /bin/sh
 
 # .phony: all down stop logs prune routine reset certs postgres \
 # 	gateway gateway_restart authentif authentif_restart \
