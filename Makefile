@@ -16,6 +16,7 @@ logs:
 exec:
 	docker exec -it nginx /bin/sh
 
+.phony: all down stop logs exec
 # .phony: all down stop logs prune routine reset certs postgres \
 # 	gateway gateway_restart authentif authentif_restart \
 # 	profileapi profileapi_restart calcgame blockchain \
