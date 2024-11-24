@@ -1,6 +1,4 @@
 const accessKey = "1limJC1oMa3Vy-zxff6k5sjYiGbFvqtdvoRoOjTnmAc";
-const redirectUri = 'http://127.0.0.1:3000/auth/callback'; // Your redirect URI
-const authUrl = `https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirectUri}&response_type=code&scope=public+write_likes`;
 
 const gallery = document.getElementById('gallery');
 
@@ -118,6 +116,7 @@ document.getElementById('search-button').addEventListener('click', async (event)
     photoElement.className = 'photo';
     photoElement.innerHTML = `<img src="${photo.urls.regular}" alt="${photo.alt_description}">
     <button class="favorite-btn" data-id="${photo.id}">❤️</button>`;
+    listenPhoto(photoElement, photo.id);
     gallery.appendChild(photoElement);
     });
   }
