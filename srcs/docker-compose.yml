@@ -13,6 +13,8 @@ services:
       - .env
     volumes:
       - nginx:/usr/src/nginx
+    networks:
+      - app_network
   backend:
     build:
       context: ./backend
@@ -25,6 +27,8 @@ services:
       - .env
     volumes:
       - backend:/usr/src/backend
+    networks:
+      - app_network
 
 
 volumes:
@@ -42,3 +46,8 @@ volumes:
       type: none
       o: bind
       device: ../volumes/backend/
+
+networks:
+  app_network:
+    name: app_network
+    driver: bridge

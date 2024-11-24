@@ -13,8 +13,17 @@ stop:
 logs:
 	cd srcs && docker-compose logs -f
 
-exec:
+nginx:
 	docker exec -it nginx /bin/sh
+
+nginx_restart:
+	docker restart nginx
+
+backend:
+	docker exec -it backend /bin/sh
+
+restart_backend:
+	docker restart backend
 
 .phony: all down stop logs exec
 # .phony: all down stop logs prune routine reset certs postgres \

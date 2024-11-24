@@ -17,4 +17,5 @@ COPY ./tools .
 EXPOSE 3000
 
 # Start the backend server
-CMD ["node", "server.js"]
+CMD ["node", "--inspect=0.0.0.0:9229", "server.js"]
+
