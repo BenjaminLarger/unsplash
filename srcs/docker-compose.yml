@@ -11,8 +11,6 @@ services:
       - 8443:80
     env_file:
       - .env
-    volumes:
-      - nginx:/usr/src/nginx
     networks:
       - app_network
   backend:
@@ -25,27 +23,9 @@ services:
       - 3000:3000
     env_file:
       - .env
-    volumes:
-      - backend:/usr/src/backend
     networks:
       - app_network
 
-
-volumes:
-  nginx:
-    name: nginx
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../volumes/nginx/
-  backend:
-    name: backend
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ../volumes/backend/
 
 networks:
   app_network:
