@@ -27,21 +27,18 @@ app.listen(port, () => {
 });
 
 app.get('/api/get-access-key', (req, res) => {
-  console.log("Getting access key ...");
   res.json({ accessKey: clientId });
   }
 );
 
 // Redirect user to Unsplash authorization page
 app.get('/auth/login', (req, res) => {
-    console.log("Redirecting to authentication ...");
     const authUrl = `https://unsplash.com/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=public`;
     res.redirect(authUrl);
 });
 
 // Handle callback from Unsplash
 app.get('/auth/callback', async (req, res) => {
-  console.log("Handling callback ...");
   const code = req.query.code;
   // Make a POST request to https://unsplash.com/oauth/token with the code
   try {
@@ -53,7 +50,6 @@ app.get('/auth/callback', async (req, res) => {
       grant_type: 'authorization_code'
     });
     const accessToken = response.data.access_token;
-    console.log(`Access token: ${accessToken}`);
     // redirect to homepage
     res.redirect('http://localhost:8443/');
     // Redirect user to the home page
@@ -66,38 +62,26 @@ app.get('/auth/callback', async (req, res) => {
 }
 );
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 // Check if user is authenticated
 app.get('/api/check-auth', (req, res) => {
-  console.log("Checking authentication ...");
-  console.log("loggedIn:", loggedIn);
   res.json({ loggedIn: loggedIn });
 });
 
 // Handle favorites pictures
 let favorites = [];
 app.post('/api/favorite', (req, res) => {
-  console.log("Fetching favorites ...");
-  console.log("Request body:", req.body);
   const { photoId } = req.body;
 
   // Save in database
   if (!favorites.includes(photoId)) {
     favorites.push(photoId);
-    console.log(`Photo ${photoId} added to favorites.`);
-    console.log('favorites:', favorites);
     res.json({ status: 'added' });
   }
   else {
-    console.log(`Photo ${photoId} is already in favorites.`);
     res.json({ status: 'already added' });
   }
 });
 
 app.get('/api/favorites', (req, res) => {
-  console.log("Fetching favorites ...");
   res.json({ favorites });
 });

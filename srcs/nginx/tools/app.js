@@ -61,7 +61,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function initialize() {
   const loggedIn = await isUserLoggedIn();
-  console.log("loggedIn:", loggedIn);
   
   // Hide the login button if logged in
   if (loggedIn) {
@@ -69,8 +68,6 @@ async function initialize() {
     handlesButtons();
   }
   fetchPhotos(loggedIn);
-  //renderButtons(loggedIn);
-  //main();
 }
 
 function handlesButtons() {
