@@ -7,22 +7,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Image Gallery</h1>
-        <button id="login">Log in with Unsplash</button>
-        <!-- Search bar -->
-        <div style="text-align: center;">
-            <input type="text" id="query" placeholder="Search for photos" style="display: none;">
-            <button id="search-button" style="display: none;">Search</button>
-        </div>
-        <!-- Favorites button -->
-        <button id="favorites" style="display: none;">Favorites</button>
-      </header>
+  <header>
+    <div class="header-top">
+      <!-- Login Button -->
+      <button id="login">Log in with Unsplash</button>
+    </div>
+    
+    <!-- Search Bar -->
+    <div class="header-section search-bar">
+      <input type="text" id="query" placeholder="Search for photos">
+      <button id="search-button">Search</button>
+    </div>
+    
+    <!-- Favorites Button -->
+    <div class="header-section">
+      <button id="favorites" style="display: none;">Favorites</button>
+    </div>
+  </header>
     <main id="gallery">
         <p>Loading photos...</p>
     </main>
     <footer>
-        <p>&copy; 2024 Your Name</p>
+        <p>&copy; 2024</p>
     </footer>
     <script src="app.js"></script>
 </body>

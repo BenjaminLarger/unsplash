@@ -1,5 +1,4 @@
-const accessKey = "1limJC1oMa3Vy-zxff6k5sjYiGbFvqtdvoRoOjTnmAc";
-
+let accessKey;
 const gallery = document.getElementById('gallery');
 
 async function fetchPhotos(loggedIn) {
@@ -12,10 +11,11 @@ async function fetchPhotos(loggedIn) {
       const photoElement = document.createElement('div');
       photoElement.className = 'photo';
       if (loggedIn) {
+        console.log('photoElement.innerHTML:', photo);
         photoElement.innerHTML = `<img src="${photo.urls.regular}" alt="${photo.alt_description}">
-        <button class="favorite-btn" data-id="${photo.id}">❤️</button>`;
-        listenPhoto(photoElement, photo.id);
+        <button class="favorite-btn fancy-btn" data-id="${photo.id}">🩸</button>`;
         // Add event listener to the favorite button
+        listenPhoto(photoElement, photo.id);
         
       }
       else
@@ -31,7 +31,6 @@ async function fetchPhotos(loggedIn) {
 async function listenPhoto(photoElement, photoId) {
   photoElement.querySelector('.favorite-btn').addEventListener('click', async (event) => {
     json_body = JSON.stringify({ photoId });
-    console.log('json_body:', json_body);
     const response = await fetch('http://localhost:3000/api/favorite',
       {
       method: 'POST',
@@ -53,8 +52,11 @@ async function listenPhoto(photoElement, photoId) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initialize();
+document.addEventListener("DOMContentLoaded", async () => {
+  const response = await fetch('http://localhost:3000/api/get-access-key');
+  const data = await response.json();
+  accessKey = data.accessKey;
+  await initialize();
 });
 
 async function initialize() {

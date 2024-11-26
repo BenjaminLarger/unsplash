@@ -26,7 +26,11 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-
+app.get('/api/get-access-key', (req, res) => {
+  console.log("Getting access key ...");
+  res.json({ accessKey: clientId });
+  }
+);
 
 // Redirect user to Unsplash authorization page
 app.get('/auth/login', (req, res) => {
