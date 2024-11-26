@@ -75,8 +75,6 @@ async function initialize() {
 
 function handlesButtons() {
   document.getElementById('login').style.display = 'none';
-  document.getElementById('query').style.display = 'block';
-  document.getElementById('search-button').style.display = 'block';
   document.getElementById('favorites').style.display = 'block';
 }
 
